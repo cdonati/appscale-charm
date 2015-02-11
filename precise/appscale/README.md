@@ -13,11 +13,13 @@ To find out more visit http://appscale.com
 To deploy this charm you will need at a minimum: a cloud environment, working
 Juju installation and a successful bootstrap. Once bootstrapped, deploy the
 AppScale charm:
+
     juju deploy appscale
 You can find the IP address of the running AppScale service with
+
     juju status
 Once the service is ready, you can access the sample App Engine application at
-<ip address>:8080 and the AppScale dashboard at <ip address>:1080
+`<ip address>:8080` and the AppScale dashboard at `<ip address>:1080`.
 
 ## Official Documentation
 https://github.com/AppScale/appscale/wiki
