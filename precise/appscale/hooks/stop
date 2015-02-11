@@ -1,0 +1,3 @@
+#!/bin/bash
+HOME=/root
+/usr/local/appscale-tools/bin/appscale down
