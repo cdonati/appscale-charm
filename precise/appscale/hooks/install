@@ -197,6 +197,30 @@ PUBLIC_IP=$(unit-get public-address)
 cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 ssh-keyscan $PUBLIC_IP $PRIVATE_IP 2> /dev/null >> /root/.ssh/known_hosts
 
+open-port 22
+open-port 80
+open-port 443
+open-port 1080
+open-port 1443
+open-port 2812
+open-port 5222
+open-port 5555
+open-port 6106
+open-port 8080
+open-port 8081
+open-port 8082
+open-port 8083
+open-port 8084
+open-port 8085
+open-port 4380
+open-port 4381
+open-port 4382
+open-port 4383
+open-port 4384
+open-port 4385
+open-port 17443
+open-port 4343
+
 echo "*****************************************"
 echo "AppScale and AppScale tools are installed"
 echo "*****************************************"

@@ -1,6 +1,6 @@
-* When running in a local lxc environment, appscale is accessible before `juju expose appscale` is run. I don't think this is supposed to happen. Running `juju expose` actually renders the instance inaccessible from a browser.
-* I don't think the current method of directly accessing EC2 metadata (if available) is the best way of obtaining the instance's public and private IP addresses for the AppScalefile. `juju charm proof` warns about doing this, and in a local environment, curl needs to time out before failing to retrieve the metadata.
-  * I was hoping the charmhelpers python library could provide these values for me, and it looks like it uses the cli tool `unit-get` to retrieve the unit's private address. However, even after installing `juju` on the unit, I was unable to get this command to work.
-* In the amazon environment, /root/.ssh/authorized_keys seems to get emptied between the install and the start hook.
+* When running in a local lxc environment, appscale is accessible even before `juju expose appscale` is run.
+* When running in aws, the expose command needs to be run before appscale starts. This is because the `appscale up` command uses ssh.
+* For some reason, none of the juju-specific environment variables are set when debugging hooks.
+* In the amazon environment, /root/.ssh/authorized_keys seems to get emptied when debugging hooks.
 * `$HOME` seems to get reset back to /home/ubuntu (even running as root) at the start of every hook.
 

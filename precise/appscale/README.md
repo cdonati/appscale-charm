@@ -15,6 +15,7 @@ Juju installation and a successful bootstrap. Once bootstrapped, deploy the
 AppScale charm:
 
     juju deploy appscale
+    juju expose appscale
 You can find the IP address of the running AppScale service with
 
     juju status
