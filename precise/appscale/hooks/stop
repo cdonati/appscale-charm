@@ -1,3 +1,10 @@
 #!/bin/bash
 HOME=/root
+
+# In the amazon environment, known_hosts seems to get emptied after the install script.
+KNOWN_HOSTS_SIZE=$(wc -c < /root/.ssh/known_hosts)
+if [ "$KNOWN_HOSTS_SIZE" -eq 1 ] ; then
+    ssh-keyscan $PUBLIC_IP $PRIVATE_IP 2> /dev/null >> /root/.ssh/known_hosts
+fi
+
 /usr/local/appscale-tools/bin/appscale down
