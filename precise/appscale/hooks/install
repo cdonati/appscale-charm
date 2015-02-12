@@ -105,7 +105,7 @@ echo
 
 sleep 5
 apt-get update
-apt-get install -y git
+apt-get install -y git juju
 if [ ! -d appscale ]; then
         git clone ${APPSCALE_REPO} --branch ${APPSCALE_BRANCH}
         git clone ${APPSCALE_TOOLS_REPO} --branch ${APPSCALE_TOOLS_BRANCH}
@@ -190,13 +190,8 @@ fi
 . /etc/profile.d/appscale.sh
 . /etc/profile.d/appscale-tools.sh
 
-PRIVATE_IP=$(ifconfig eth0 | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}')
-PUBLIC_IP=$PRIVATE_IP
-
-# If this is an EC2 instance, get its public ip address.
-if curl --connect-timeout 2 169.254.169.254 ; then
-        PUBLIC_IP=$(curl http://169.254.169.254/2014-11-05/meta-data/public-ipv4)
-fi
+PRIVATE_IP=$(unit-get private-address)
+PUBLIC_IP=$(unit-get public-address)
 
 # Allow root login (AppScale will need it to come up).
 cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
