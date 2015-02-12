@@ -7,15 +7,15 @@ if [ -f AppScalefile ] && /usr/local/appscale-tools/bin/appscale status; then
   exit 0
 fi
 
+PRIVATE_IP=$(ifconfig eth0 | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}')
+PUBLIC_IP=$PRIVATE_IP
+
+# If this is an EC2 instance, get its public ip address.
+if curl --connect-timeout 2 169.254.169.254 ; then
+    PUBLIC_IP=$(curl http://169.254.169.254/2014-11-05/meta-data/public-ipv4)
+fi
+
 if [ ! -f AppScalefile ] ; then
-    PRIVATE_IP=$(ifconfig eth0 | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}')
-    PUBLIC_IP=$PRIVATE_IP
-
-    # If this is an EC2 instance, get its public ip address.
-    if curl --connect-timeout 2 169.254.169.254 ; then
-        PUBLIC_IP=$(curl http://169.254.169.254/2014-11-05/meta-data/public-ipv4)
-    fi
-
     echo "ips_layout :" > AppScalefile
     echo "  controller : ${PRIVATE_IP}" >> AppScalefile
     echo "login : ${PUBLIC_IP}" >> AppScalefile
