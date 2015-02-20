@@ -19,8 +19,9 @@ AppScale charm:
 You can find the IP address of the running AppScale service with
 
     juju status
-Once the service is ready, you can access the sample App Engine application at
-`<ip address>:8080` and the AppScale dashboard at `<ip address>:1080`.
+Once the service is ready, you can access the AppScale dashboard at
+`<ip address>:1080`. The default username is `a@a.com` with the password
+`aaaaaa`.
 
 ## Official Documentation
 https://github.com/AppScale/appscale/wiki

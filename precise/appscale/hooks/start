@@ -24,8 +24,3 @@ if [ "$KNOWN_HOSTS_SIZE" -eq 1 ] ; then
 fi
 
 /usr/local/appscale-tools/bin/appscale up
-
-if [ ! -f guestbook.tar.gz ] ; then
-    wget -O guestbook.tar.gz http://www.appscale.com/wp-content/uploads/2014/07/guestbook.tar.gz
-fi
-/usr/local/appscale-tools/bin/appscale deploy guestbook.tar.gz
